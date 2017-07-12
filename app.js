@@ -4,7 +4,7 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 
 const app = express();
-const port = 8181;
+const port = process.env.PORT || 8181;
 
 app.use(bodyParser());
 
