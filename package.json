@@ -1,0 +1,16 @@
+{
+  "name": "methodology",
+  "version": "0.1.0",
+  "description": "methodology input",
+  "main": "/app.js",
+  "author": "ohadob",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.29"
+  },
+  "scripts": {
+    "start": "node ./app.js"
+  }
+}
