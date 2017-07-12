@@ -4,7 +4,7 @@ $(document).ready(function(){
 		alert(JSON.stringify($('form').serializeArray()));
     var data = { name: $("#vname").val() };
     alert(JSON.stringify(data));
-    $.post("http://localhost:8181/save", data, function(result) {
+    $.post("/save", data, function(result) {
       alert(result ? "Thank you!" : "An error occured :( ");
     });
 	}
