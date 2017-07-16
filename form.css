@@ -1,66 +1,89 @@
-/*-----------------------------------------------------------------
-css settings for HTML div form1 (Dynamically Created using jQuery
-------------------------------------------------------------------*/
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-div#form1{				
-	width:450px;
-	height:1430px;
-	border:2px solid rgb(165, 165, 165); 
-	padding:20px;
-	background-color:#f3f3f3; 
-	border-radius:3px; 
-	float:left;
-	text-align:center;
-	margin-left:100px;
-	margin-top:50px;
-	}
- 
- h3,p{
-	text-align:center;
-	font-family: 'Raleway', sans-serif;
-	color:darkgreen;
- }
- 
- input{
-	width:100%;
-	margin:10px 0;
-	padding:5px;
-	height:35px;
-	box-shadow: 1px 1px 1px 1px gray;
-	border-radius:3px;
- }
- 
- input#submit{
-	width:100%;
-	margin:10px 15px 10px 0;
-	padding:5px;
-	background-color: #3fb8e8;
-	box-shadow: 0px 3px 0px 0px #3293ba;
-	border-radius:3px;
-	color:white;
-	height:41px;
-	font-size:16px;
-	
- }
- textarea{
-	margin:10px 0;
-	padding:5px;
-	box-shadow: 1px 1px 1px 1px gray;
-	border-radius:3px;
- }
- 
-div#container{
-	margin:50px auto;
-	width:960px;
-	} 
-h2{
-    font-family: 'Raleway', sans-serif;
-	color:darkgreen;
-	text-shadow:1px 1px 1px gray;
-	}
-/*----------------------------------------------------
-	CSS for right side contents(Optional).
-------------------------------------------------------*/	
-img{
-	float:right;
-	}
+div#form1{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+div#form1 label{
+	display:block;
+	margin-bottom: 10px;
+}
+div#form1 label > span{
+	float: left;
+	width: 100px;
+	color: #F072A9;
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: 1px 1px 1px #fff;
+}
+div#form1 fieldset{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #FFD2D2;
+	padding: 20px;
+	background: #FFF4F4;
+	box-shadow: inset 0px 0px 15px #FFE5E5;
+	-moz-box-shadow: inset 0px 0px 15px #FFE5E5;
+	-webkit-box-shadow: inset 0px 0px 15px #FFE5E5;
+}
+div#form1 fieldset legend{
+	color: #FFA0C9;
+	border-top: 1px solid #FFD2D2;
+	border-left: 1px solid #FFD2D2;
+	border-right: 1px solid #FFD2D2;
+	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	background: #FFF4F4;
+	padding: 0px 8px 3px 8px;
+	box-shadow: -0px -1px 2px #F1F1F1;
+	-moz-box-shadow:-0px -1px 2px #F1F1F1;
+	-webkit-box-shadow:-0px -1px 2px #F1F1F1;
+	font-weight: normal;
+	font-size: 12px;
+}
+div#form1 textarea{
+	width:250px;
+	height:100px;
+}
+div#form1 input[type=text],
+div#form1 input[type=date],
+div#form1 input[type=datetime],
+div#form1 input[type=number],
+div#form1 input[type=search],
+div#form1 input[type=time],
+div#form1 input[type=url],
+div#form1 input[type=email],
+div#form1 select,
+div#form1 textarea{
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid #FFC2DC;
+	outline: none;
+	color: #F072A9;
+	padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px #FFD5E7;
+	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
+	background: #FFEFF6;
+	width:50%;
+}
+div#form1  input[type=submit],
+div#form1  input[type=button]{
+	background: #EB3B88;
+	border: 1px solid #C94A81;
+	padding: 5px 15px 5px 15px;
+	color: #FFCBE2;
+	box-shadow: inset -1px -1px 3px #FF62A7;
+	-moz-box-shadow: inset -1px -1px 3px #FF62A7;
+	-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+	border-radius: 3px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	font-weight: bold;
+}
+.required{
+	color:red;
+	font-weight:normal;
+}
