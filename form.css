@@ -66,10 +66,12 @@ div#form1 textarea{
 	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
 	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
 	background: #FFEFF6;
-	width:50%;
+	width: 90%;
+	font-size: 14px;
 }
 div#form1  input[type=submit],
 div#form1  input[type=button]{
+	float: center;
 	background: #EB3B88;
 	border: 1px solid #C94A81;
 	padding: 5px 15px 5px 15px;
@@ -82,6 +84,7 @@ div#form1  input[type=button]{
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	font-weight: bold;
+	font-size: 14px;
 }
 .required{
 	color:red;
