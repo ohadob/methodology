@@ -81,7 +81,9 @@ $(document).ready(function(){
           $("<option/>").val('Extreme Programming').text('Extreme Programming'),
           $("<option/>").val('Feature Driven').text('Feature Driven'),
           $("<option/>").val('Lean').text('Lean'),
-			    $("<option/>").val('Other').text('Other'))),
+			    $("<option/>").val('Other').text('Other')),
+        $("<br/>"), $("<br/>"),
+        $("<input/>", {type:'text', name:'projMethodOther', placeholder:'Other:'})),
 			$("<br/>"),
 			$("<fieldset/>").append(
 				$("<legend/>", {text: "Measurement of project success"}),
