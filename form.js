@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	$("select:has(option[value=]:first-child)").on('change', function() {
-		$(this).toggleClass("empty", $.inArray($(this).val(), ['', null]) >= 0);
-	}).trigger('change');
+  $("select:has(option[value=]:first-child)").on('change', function() {
+    $(this).toggleClass("empty", $.inArray($(this).val(), ['', null]) >= 0);
+  }).trigger('change');
 
   $.fn.serializeObject = function()
   {
@@ -22,7 +22,6 @@ $(document).ready(function(){
 
 	function saveData(a, b) {
 		var data = $('form').serializeObject();
-    alert(JSON.stringify(data));
     $.post("/save", data, function(result) {
       alert(result ? "Thank you!" : "An error occured :( ");
     });
@@ -44,7 +43,7 @@ $(document).ready(function(){
 				$("<legend/>", {text: "Organization"}),
 				$("<input/>", {type:'number', name:'orgSize', placeholder:'Size (number of people)'}),
 						$("<br/>"), $("<br/>"),
-				$("<input/>", {type:'number', name:'orgFlexibility', placeholder:'Flexibility- adaptability to changes (rate 1 - 10)'}),
+				$("<input/>", {type:'number', name:'orgFlexibility', placeholder:'Flexibility- adapting to changes (rate 1 - 10)'}),
 						$("<br/>"), $("<br/>"),
 				$("<input/>", {type:'number', name:'orgResources', placeholder:'Amount of technical resources (rate 1 - 10)'})),
 			$("<br/>"),
@@ -67,9 +66,22 @@ $(document).ready(function(){
 						$("<br/>"), $("<br/>"),
 				$("<input/>", {type:'number', name:'projExperience', placeholder:'Total team experience (years)'}),
 						$("<br/>"), $("<br/>"),
-				$("<input/>", {type:'number', name:'projLife', placeholder:'Software life expectancy (years)'}),
-						$("<br/>"), $("<br/>"),
-				$("<select/>", {name:'methodSelect'}).append('aaa')),
+				$("<input/>", {type:'number', name:'projLife', placeholder:'Software life expectancy (years)'})),
+						$("<br/>"),
+      $("<fieldset/>").append(
+        $("<legend/>", {text: "Project Methodology"}),
+				$("<select>", {name: 'projMethod'}).append(
+          $("<option/>").val('').text('Please select'),
+					$("<option/>").val('Waterfall').text('Waterfall'),
+          $("<option/>").val('Prototype').text('Prototype'),
+          $("<option/>").val('Agile').text('Agile'),
+          $("<option/>").val('Scrum').text('Scrum'),
+          $("<option/>").val('Rapid').text('Rapid'),
+          $("<option/>").val('Spiral').text('Spiral'),
+          $("<option/>").val('Extreme Programming').text('Extreme Programming'),
+          $("<option/>").val('Feature Driven').text('Feature Driven'),
+          $("<option/>").val('Lean').text('Lean'),
+			    $("<option/>").val('Other').text('Other'))),
 			$("<br/>"),
 			$("<fieldset/>").append(
 				$("<legend/>", {text: "Measurement of project success"}),
@@ -82,7 +94,7 @@ $(document).ready(function(){
 				$("<input/>", {type:'number', name:'mesCustomer', placeholder:'Customer satisfaction (rate 1 - 10)'})),
 			$("<br/>"),
 			$("<input/>", {type:'submit', id:'submit', value:'Submit'})
-			).submit(saveData))
+			).submit(saveData));
 });
 
 
