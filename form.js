@@ -29,7 +29,7 @@ $(document).ready(function () {
 	$("div#form1").append(			// Creating Form div and adding <h2> and <p> paragraph tag in it.
 		$("<h3/>").text("Thesis: System for Choosing a Methodology for a Software Project"),
 		$("<p/>").text("By filling this form, you will contribute to a database of real software projects, as they were described by a member of the project's team." +
-			"The database will be used in order to provide recommandations for the best methodology to use in future projects, based on Machine Learning algorithems. "),
+			" The database will be used in order to provide recommandations for the best methodology to use in future projects, based on Machine Learning algorithems. "),
 		$("<p/>").text("Please describe a software project you were involved in:"),
 		$("<br/>"),
 		$("<form/>", { action: '#', method: '#', style: "width: 400px" }).append(   // Create <form> tag and appending in html div form1.
@@ -107,8 +107,8 @@ $(document).ready(function () {
 				$("<label/>", { text: 'Budget' }),
 				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesBudget', placeholder: 'Plan vs Bill (1 - 5)' }),
 				$("<br/>"), $("<br/>"),
-				$("<label/>", { text: 'Contnet' }),
-				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesContnet', placeholder: 'Commitments vs delivery (1 - 5)' }),
+				$("<label/>", { text: 'Conteמt' }),
+				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesConteמt', placeholder: 'Commitments vs delivery (1 - 5)' }),
 				$("<br/>"), $("<br/>"),
 				$("<label/>", { text: 'Customer Satisfaction' }),
 				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesCustomer', placeholder: 'Based on positive/negative feedback (1 - 5)' })),
