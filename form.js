@@ -30,7 +30,7 @@ $(document).ready(function () {
 		$("<h3/>").text("Thesis: System for Choosing a Methodology for a Software Project"),
 		$("<p/>").text("By filling this form, you will contribute to a database of real software projects, as they were described by a member of the project's team." +
 			" The database will be used in order to provide recommandations for the best methodology to use in future projects, based on Machine Learning algorithems. "),
-		$("<p/>").text("Please describe a software project you were involved in:"),
+		$("<p/>").text("Please describe a software project you were involved in (14 questions):"),
 		$("<br/>"),
 		$("<form/>", { action: '#', method: '#', style: "width: 400px" }).append(   // Create <form> tag and appending in html div form1.
 			$("<fieldset/>").append(
@@ -90,6 +90,7 @@ $(document).ready(function () {
 					$("<option/>").val('Prototype').text('Prototype'),
 					$("<option/>").val('Agile').text('Agile'),
 					$("<option/>").val('Scrum').text('Scrum'),
+					$("<option/>").val('Hybrid').text('Hybrid'),
 					$("<option/>").val('Rapid').text('Rapid'),
 					$("<option/>").val('Spiral').text('Spiral'),
 					$("<option/>").val('Extreme Programming').text('Extreme Programming'),
