@@ -26,6 +26,29 @@ var save = function(data) {
   });
 };
 
+var deleteDocument = function(db, doc) {
+  db.collection(collection).deleteOne(doc, function(err, result) {
+    if (err)
+    {
+      console.log('failed deleting a document:', err.message);
+    } else {
+      console.log('deleted a document from the collection:', JSON.stringify(doc), JSON.stringify(result));
+    }
+
+    db.close();
+  });
+};
+
+var del = function(data) {
+  mongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('failed connecting to mongo:', err.message);
+    } else {
+      deleteDocument(db, data);
+    }
+  });
+};
+
 var queryAllDocuments = function(db, req, next) {
   var results = [];
   var cursor = db.collection(collection).find( );
@@ -56,5 +79,5 @@ var queryAll = function(req, next) {
   });
 };
 
-module.exports = { queryAll: queryAll, save: save};
+module.exports = { queryAll: queryAll, save: save, delete: del };
 
