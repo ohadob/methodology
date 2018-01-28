@@ -30,6 +30,7 @@ function buildTree(training_data, class_name, features) {
     return dt;
 }
 
+var dt = null;
 var req = {};
 db.queryAll(req, () => {
     var class_name = 'success';
@@ -68,3 +69,9 @@ db.queryAll(req, () => {
 
     buildTree(training, class_name, features);
 });
+
+function predict(data) {
+    return dt.predict(data);
+}
+
+module.exports = { predict };

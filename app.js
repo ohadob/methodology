@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var db = require('./db');
+var tree = require('./tree');
 var bodyParser = require('body-parser');
 
 const app = express();
@@ -16,8 +17,14 @@ app.post('/save', function (req, res) {
   res.send(true);
 });
 
+app.post('/submit', function (req, res) {
+  console.log('doc: ', req.body);
+  const result = tree.predict(req.body);
+  res.send(JSON.stringify(result));
+});
+
 var sendResults = function (req, res, next) {
-  res.send(req.results);
+  res.send(req.results);c
 
   return next();
 }
@@ -29,6 +36,9 @@ app.get('/query', function (req, res, next) {
 app.use('/form', express.static(path.join(__dirname, 'form.html')))
 app.use('/form.js', express.static(path.join(__dirname, 'form.js')))
 app.use('/form.css', express.static(path.join(__dirname, 'form.css')))
+
+app.use('/predict', express.static(path.join(__dirname, 'predict.html')))
+app.use('/predict.js', express.static(path.join(__dirname, 'predict.js')))
 
 
 var server = app.listen(port, function() {
