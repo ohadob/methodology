@@ -103,7 +103,7 @@ $(document).ready(function () {
 			$("<fieldset/>").append(
 				$("<legend/>", { text: "Measurement of project success" }),
 				$("<label/>", { text: 'Schedule' }),
-				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesSchedule ', placeholder: 'How was the deadline meet (1 - 5)' }),
+				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesSchedule', placeholder: 'How was the deadline meet (1 - 5)' }),
 				$("<br/>"), $("<br/>"),
 				$("<label/>", { text: 'Budget' }),
 				$("<input/>", { type: 'number', min: "1", max: "5", name: 'mesBudget', placeholder: 'Plan vs Bill (1 - 5)' }),
