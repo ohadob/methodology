@@ -28,8 +28,8 @@ $(document).ready(function () {
 
 	$("div#form1").append(			// Creating Form div and adding <h2> and <p> paragraph tag in it.
 		$("<h3/>").text("Thesis: System for Choosing a Methodology for a Software Project"),
-		$("<p/>").text("After filling this form, you will get a prediction whether the project will be successful."),
-		$("<p/>").text("Please describe a software project you are involved in (10 questions):"),
+		$("<p/>").text("After filling this form, you will get a prediction of the project\'s chance to be successful per each methodology."),
+		$("<p/>").text("Please describe a software project you are involved in (9 questions):"),
 		$("<br/>"),
 		$("<form/>", { action: '#', method: '#', style: "width: 400px" }).append(   // Create <form> tag and appending in html div form1.
 			$("<fieldset/>").append(
@@ -71,24 +71,6 @@ $(document).ready(function () {
 				$("<br/>"), $("<br/>"),
 				$("<label/>", { text: 'Project Lifespan' }),
 				$("<input/>", { type: 'number', name: 'projLife', placeholder: 'Software life expectancy (years)' })),
-			$("<br/>"),
-			$("<fieldset/>").append(
-				$("<legend/>", { text: "Project Methodology" }),
-				$("<select>", { name: 'projMethod' }).append(
-					$("<option/>").val('').text('Please select'),
-					$("<option/>").val('Waterfall').text('Waterfall'),
-					$("<option/>").val('Prototype').text('Prototype'),
-					$("<option/>").val('Agile').text('Agile'),
-					$("<option/>").val('Scrum').text('Scrum'),
-					$("<option/>").val('Hybrid').text('Hybrid'),
-					$("<option/>").val('Rapid').text('Rapid'),
-					$("<option/>").val('Spiral').text('Spiral'),
-					$("<option/>").val('Extreme Programming').text('Extreme Programming'),
-					$("<option/>").val('Feature Driven').text('Feature Driven'),
-					$("<option/>").val('Lean').text('Lean'),
-					$("<option/>").val('Other').text('Other')),
-				$("<br/>"), $("<br/>"),
-				$("<input/>", { type: 'text', name: 'projMethodOther', placeholder: 'Other:' })),
 			$("<br/>"),
 			$("<input/>", { type: 'submit', id: 'submit', value: 'Submit' })
 		).submit(submitData));

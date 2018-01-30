@@ -16,6 +16,8 @@ var methodEnum = {
     Lean: 10
 };
 
+const methodNames = Object.keys(methodEnum);
+
 var sizeEnum = {
     '<50': 1,
     '<100': 2,
@@ -72,12 +74,13 @@ db.queryAll(req, () => {
         var training = projects.map(p => mapProject(p, i));        
         dt.tree = buildTree(training, class_name, features);
 
+        dts.push(dt);
         console.log('successPercent: ', i);
     }
 });
 
 function predictTest() {
-    var mulp = dts.find(x => successPercent = 80).predict({
+    var mulp = dts.find(x => x.successPercent = 80).predict({
         'Organization Size': 2,
         orgFlexibility: 5,
         orgResources: 5,
@@ -95,9 +98,35 @@ function predictTest() {
     console.log('predict: ', predict);
 }
 
-function predict(data) {
+function predict80(data) {
     const project = mapProject(data);
-    return dts.find(x => successPercent = 80).predict(project);
+    return dts.find(x => x.successPercent = 80).predict(project);
+}
+
+function predict(data) {
+    const projectData = mapProject(data);
+    const results = {};
+    for (let projMethod = 1; projMethod <= 10; projMethod++) {
+        const project = Object.assign({ projMethod }, projectData);
+
+        for (let successPercent = 100; successPercent >= 1; successPercent--) {
+            const dt = dts.find(x => x.successPercent === successPercent);
+            if (dt.predict(project)) {
+                const methodName = methodNames
+                    .find(name => methodEnum[name] === projMethod);
+
+                results[methodName] = successPercent;
+                console.log('method: ', methodName);
+                console.log('successPercent: ', successPercent);
+                break;
+            } 
+        }
+    }
+
+    console.log();
+    console.log();
+    console.log('results: ', JSON.stringify(results));
+    return 
 }
 
 module.exports = { predict };
