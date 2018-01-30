@@ -1,4 +1,5 @@
 var DecisionTree = require('decision-tree');
+var clone = require('clone');
 var db = require('./db');
 
 const minSuccess = 13;
@@ -26,10 +27,9 @@ var sizeEnum = {
 };
 
 function buildTree(training_data, class_name, features) {
-    console.log();
     var dt = new DecisionTree(training_data, class_name, features);
-    console.log(JSON.stringify(dt.toJSON()));
-    return dt;
+    console.log(dt.toJSON());
+    return clone(dt, true);
 }
 
 var mapProject = (p, successPercent) => ({
@@ -75,10 +75,13 @@ function init() {
         for (let i = 1; i <= 100; i++) {
             var dt = { successPercent: i };
             var training = projects.map(p => mapProject(p, i));        
-            dt.tree = buildTree(training, class_name, features);
+            const tree = buildTree(training, class_name, features);
+            dt.tree = tree;
     
             dts.push(dt);
             console.log('successPercent: ', i);
+            const dt1 = dts.find(x => x.successPercent = 1);
+            console.log('dt1: ', dt1.successPercent ,dt1.tree.toJSON());
         }
     });
 }
@@ -115,10 +118,12 @@ function predict(data) {
         delete project.success;
 
         for (let successPercent = 100; successPercent >= 1; successPercent--) {
+            console.log('dts: ',JSON.stringify(dts));
             const dt = dts.find(x => x.successPercent === successPercent).tree;
             console.log('projMethod:', projMethod);
             console.log('project:', JSON.stringify(project));
             console.log('successPercent:' ,successPercent);
+            console.log('tree:', JSON.stringify(dt.toJSON()));
             console.log('predict: ', dt.predict(project));
             if (dt.predict(project)) {
                 const methodName = methodNames
