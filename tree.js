@@ -30,8 +30,11 @@ function buildTree(training_data, class_name, features) {
     return dt;
 }
 
-var mapProject = p => ({
-    success: (Number(p.mesCustomer) + Number(p.mesContent) + Number(p.mesBudget) + Number(p.mesSchedule)) >= minSuccess,
+var mapProject = (p, successPercent) => ({
+    success: (Number(p.mesCustomer)
+        + Number(p.mesContent)
+        + Number(p.mesBudget)
+        + Number(p.mesSchedule)) >= (successPercent * 0.2),
     projMethod: methodEnum[p.projMethod],
     orgSize: sizeEnum[p.orgSize],
     orgFlexibility: Number(p.orgFlexibility),
@@ -45,52 +48,56 @@ var mapProject = p => ({
     projLife : Number(p.projLife)
 });
 
-var dt = null;
+var class_name = 'success';
+var features = 
+    ["projMethod",
+    "orgSize",
+    "orgFlexibility",
+    "orgResources",
+    "projDuration",
+    "projEffort",
+    "projRisk",
+    "projQuality",
+    "projReliability",
+    "projExperience",
+    "projLife"];
+
+var dts = [];
 var req = {};
 db.queryAll(req, () => {
-    var class_name = 'success';
     var projects = req.results;
-    var training = projects.map(mapProject);
 
-    var features = 
-        ["projMethod",
-        "orgSize",
-        "orgFlexibility",
-        "orgResources",
-        "projDuration",
-        "projEffort",
-        "projRisk",
-        "projQuality",
-        "projReliability",
-        "projExperience",
-        "projLife"];
+    for (let i = 1; i <= 100; i++) {
+        var dt = { successPercent: i };
+        var training = projects.map(p => mapProject(p, i));        
+        dt.tree = buildTree(training, class_name, features);
 
-    console.log('training: ', JSON.stringify(training));
-    console.log('class_name: ', class_name);
-    console.log('features: ', JSON.stringify(features));
-
-    dt = buildTree(training, class_name, features);
-
-
-    var mulp = dt.predict({ 'Organization Size': 2,
-    orgFlexibility: 5,
-    orgResources: 5,
-    projDuration: 12,
-    projEffort: 10,
-    projRisk: 1,
-    projQuality: 5,
-    projReliability: 4,
-    projExperience: 5,
-    projLife: 2,
-    projMethod: 4,
-    projMethodOther: '' })
-
-    console.log('mulp: ', mulp);
+        console.log('successPercent: ', i);
+    }
 });
+
+function predictTest() {
+    var mulp = dts.find(x => successPercent = 80).predict({
+        'Organization Size': 2,
+        orgFlexibility: 5,
+        orgResources: 5,
+        projDuration: 12,
+        projEffort: 10,
+        projRisk: 1,
+        projQuality: 5,
+        projReliability: 4,
+        projExperience: 5,
+        projLife: 2,
+        projMethod: 4,
+        projMethodOther: ''
+    });
+
+    console.log('predict: ', predict);
+}
 
 function predict(data) {
     const project = mapProject(data);
-    return dt.predict(project);
+    return dts.find(x => successPercent = 80).predict(project);
 }
 
 module.exports = { predict };
