@@ -9,6 +9,8 @@ const port = process.env.PORT || 8181;
 
 app.use(bodyParser());
 
+tree.init();
+
 app.get('/test', function (req, res) { res.send('1') });
 
 app.post('/save', function (req, res) {

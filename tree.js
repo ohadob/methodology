@@ -66,18 +66,22 @@ var features =
 
 var dts = [];
 var req = {};
-db.queryAll(req, () => {
-    var projects = req.results;
 
-    for (let i = 1; i <= 100; i++) {
-        var dt = { successPercent: i };
-        var training = projects.map(p => mapProject(p, i));        
-        dt.tree = buildTree(training, class_name, features);
-
-        dts.push(dt);
-        console.log('successPercent: ', i);
-    }
-});
+function init() {
+    console.log('initiating tree module...');
+    db.queryAll(req, () => {
+        var projects = req.results;
+    
+        for (let i = 1; i <= 100; i++) {
+            var dt = { successPercent: i };
+            var training = projects.map(p => mapProject(p, i));        
+            dt.tree = buildTree(training, class_name, features);
+    
+            dts.push(dt);
+            console.log('successPercent: ', i);
+        }
+    });
+}
 
 function predictTest() {
     var mulp = dts.find(x => x.successPercent = 80).predict({
@@ -104,13 +108,18 @@ function predict80(data) {
 }
 
 function predict(data) {
-    const projectData = mapProject(data);
+    const projectData = mapProject(data, 100);
     const results = {};
     for (let projMethod = 1; projMethod <= 10; projMethod++) {
-        const project = Object.assign({ projMethod }, projectData);
+        const project = Object.assign({} , projectData, { projMethod });
+        delete project.success;
 
         for (let successPercent = 100; successPercent >= 1; successPercent--) {
-            const dt = dts.find(x => x.successPercent === successPercent);
+            const dt = dts.find(x => x.successPercent === successPercent).tree;
+            console.log('projMethod:', projMethod);
+            console.log('project:', JSON.stringify(project));
+            console.log('successPercent:' ,successPercent);
+            console.log('predict: ', dt.predict(project));
             if (dt.predict(project)) {
                 const methodName = methodNames
                     .find(name => methodEnum[name] === projMethod);
@@ -126,7 +135,7 @@ function predict(data) {
     console.log();
     console.log();
     console.log('results: ', JSON.stringify(results));
-    return 
+    return results;
 }
 
-module.exports = { predict };
+module.exports = { init, predict };
