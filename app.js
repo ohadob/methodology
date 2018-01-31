@@ -11,6 +11,19 @@ app.use(bodyParser());
 
 tree.init();
 
+function parseResults(predictResults) {
+  let text = '';
+  let i = 1;
+  for (const predictResult of predictResults) {
+    text += `${i}. ${predictResult.method}: ${predictResult.successPercent}%\n`;
+    i += 1;
+  }
+
+  text = text.slice(0, -1);
+  console.log(text);
+  return text;
+}
+
 app.get('/test', function (req, res) { res.send('1') });
 
 app.post('/save', function (req, res) {
@@ -22,7 +35,8 @@ app.post('/save', function (req, res) {
 app.post('/submit', function (req, res) {
   console.log('doc: ', req.body);
   const result = tree.predict(req.body);
-  res.send(JSON.stringify(result));
+  const prettyRes = parseResults(result);
+  res.send(prettyRes);
 });
 
 var sendResults = function (req, res, next) {

@@ -112,7 +112,7 @@ function predict(data) {
     delete projectData.success;
 
     let methods = [];
-    const results = [];
+    let results = [];
     for (let methodName of methodNames) {
         const projMethod = methodEnum[methodName];
         const project = Object.assign({} , projectData, { projMethod });
@@ -138,9 +138,9 @@ function predict(data) {
         }
     }
 
+    results = results.sort((a,b) => b.successPercent - a.successPercent);
     console.log();
-    console.log('results: ', JSON.stringify(results.sort((a,b) =>
-        b.successPercent - a.successPercent)));
+    console.log('results: ', JSON.stringify(results));
     return results;
 }
 
