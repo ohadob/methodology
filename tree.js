@@ -4,15 +4,13 @@ var db = require('./db');
 
 var methodEnum = {
     Waterfall: 1000,
-    Prototype: 2000,
+    Hybrid: 2000,
     Agile: 3000,
     Scrum: 4000,
     Hybrid: 5000,
-    Rapid: 6000,
+    Prototype: 6000,
     Spiral: 7000,
     'Extreme Programming': 8000,
-    'Feature Driven': 9000,
-    Lean: 10000
 };
 
 const methodNames = Object.keys(methodEnum);
@@ -111,33 +109,35 @@ function predict80(data) {
 
 function predict(data) {
     const projectData = mapProject(data, 100);
+    delete projectData.success;
+
+    let methods = [];
     const results = [];
-    for (let projMethod = 1000; projMethod <= 10000; projMethod+= 1000) {
+    for (let methodName of methodNames) {
+        const projMethod = methodEnum[methodName];
         const project = Object.assign({} , projectData, { projMethod });
-        delete project.success;
+        methods.push({projMethod , project, methodName});
+    }
 
-        for (let successPercent = 100; successPercent >= 1; successPercent--) {
-            console.log('dts: ',JSON.stringify(dts));
-            var training = projects.map(p => mapProject(p, successPercent));        
-            const dt = buildTree(training, class_name, features);
-            console.log('projMethod:', projMethod);
-            console.log('project:', JSON.stringify(project));
-            console.log('successPercent:' ,successPercent);
-            console.log('tree:', JSON.stringify(dt.toJSON()));
-            console.log('predict: ', dt.predict(project));
-            if (dt.predict(project)) {
-                const methodName = methodNames
-                    .find(name => methodEnum[name] === projMethod);
+    for (let successPercent = 100; successPercent >= 1; successPercent--) {
+        var training = projects.map(p => mapProject(p, successPercent));        
+        const dt = buildTree(training, class_name, features);
+        console.log('successPercent:' ,successPercent);
 
-                results.push({ method: methodName, successPercent });
-                console.log('method: ', methodName);
-                console.log('successPercent: ', successPercent);
-                break;
-            } 
+        for (let method of methods) {
+            console.log('projMethod:', method.projMethod);
+            if (dt.predict(method.project)) {
+                results.push({ method: method.methodName, successPercent });
+                methods = methods.filter(x => x.projMethod != method.projMethod);
+            }
+        }
+
+        // quit the loop if all methods were calculated
+        if (methods.length === 0) {
+            break;
         }
     }
 
-    console.log();
     console.log();
     console.log('results: ', JSON.stringify(results.sort((a,b) =>
         b.successPercent - a.successPercent)));
