@@ -32,7 +32,7 @@ $(document).ready(function () {
 	$("div#form1").append(			// Creating Form div and adding <h2> and <p> paragraph tag in it.
 		$("<h3/>").text("Thesis: System for Choosing a Methodology for a Software Project"),
 		$("<p/>").text("After filling this form, you will get a prediction of the project\'s chance to be successful per each methodology."),
-		$("<p/>").text("Please describe a software project you are involved in (9 questions):"),
+		$("<p/>").text("Please describe a software project (9 questions):"),
 		$("<br/>"),
 		$("<form/>", { action: '#', method: '#', style: "width: 400px" }).append(   // Create <form> tag and appending in html div form1.
 			$("<fieldset/>").append(
