@@ -19,10 +19,13 @@ $(document).ready(function () {
 		return o;
 	};
 
-	function submitData(a, b) {
+	function submitData(e) {
+		e.preventDefault();
 		var data = $('form').serializeObject();
 		$.post("/submit", data, function (result) {
-			alert(result);
+			swal(result, function () {
+				window.location.reload();
+			});
 		});
 	}
 
