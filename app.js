@@ -62,6 +62,7 @@ app.use('/form.css', express.static(path.join(__dirname, 'form.css')))
 
 app.use('/predict', express.static(path.join(__dirname, 'predict.html')))
 app.use('/predict.js', express.static(path.join(__dirname, 'predict.js')))
+app.use('/predict.css', express.static(path.join(__dirname, 'predict.css')))
 
 
 var server = app.listen(port, function() {

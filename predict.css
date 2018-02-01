@@ -1,0 +1,92 @@
+div#form1{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+div#form1 label{
+	display:block;
+	margin-bottom: 10px;
+}
+div#form1 label > span{
+	float: left;
+	width: 100px;
+	color: rgb(152, 114, 240);
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: 1px 1px 1px rgb(255, 255, 255);
+}
+div#form1 fieldset{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid rgb(150, 149, 194);
+	padding: 20px;
+	background: rgb(244, 242, 250);
+	box-shadow: inset 0px 0px 15px rgb(235, 229, 255);
+	-moz-box-shadow: inset 0px 0px 15px rgb(236, 229, 255);
+	-webkit-box-shadow: inset 0px 0px 15px rgb(239, 229, 255);
+}
+div#form1 fieldset legend{
+	color: rgb(55, 0, 255);
+	border-top: 1px solid rgb(239, 210, 255);
+	border-left: 1px solid rgb(226, 210, 255);
+	border-right: 1px solid rgb(215, 210, 255);
+	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	background: rgb(248, 244, 255);
+	padding: 0px 8px 3px 8px;
+	box-shadow: -0px -1px 2px rgb(241, 241, 241);
+	-moz-box-shadow:-0px -1px 2px rgb(241, 241, 241);
+	-webkit-box-shadow:-0px -1px 2px rgb(241, 241, 241);
+	font-weight: normal;
+	font-size: 12px;
+}
+div#form1 textarea{
+	width:250px;
+	height:100px;
+}
+div#form1 input[type=text],
+div#form1 input[type=date],
+div#form1 input[type=datetime],
+div#form1 input[type=number],
+div#form1 input[type=search],
+div#form1 input[type=time],
+div#form1 input[type=url],
+div#form1 input[type=email],
+div#form1 select,
+div#form1 textarea{
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid rgb(226, 194, 255);
+	outline: none;
+	color: #4c16af;
+	padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px rgb(224, 213, 255);
+	-moz-box-shadow: inset 1px 1px 4px rgb(224, 213, 255);
+	-webkit-box-shadow: inset 1px 1px 4px rgb(219, 213, 255);
+	background: rgb(249, 239, 255);
+	width: 90%;
+	font-size: 14px;
+}
+div#form1  input[type=submit],
+div#form1  input[type=button]{
+	float: center;
+	background: rgb(121, 59, 235);
+	border: 1px solid rgb(108, 74, 201);
+	padding: 5px 15px 5px 15px;
+	color: rgb(237, 234, 245);
+	box-shadow: inset -1px -1px 3px rgb(171, 98, 255);
+	-moz-box-shadow: inset -1px -1px 3px rgb(140, 98, 255);
+	-webkit-box-shadow: inset -1px -1px 3px rgb(132, 98, 255);
+	border-radius: 3px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	font-weight: bold;
+	font-size: 14px;
+}
+.required{
+	color:rgb(4, 0, 255);
+	font-weight:normal;
+}
