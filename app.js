@@ -3,7 +3,6 @@ var path = require('path');
 var db = require('./db');
 var tree = require('./tree');
 var bodyParser = require('body-parser');
-var swal = require('sweetalert');
 
 const app = express();
 const port = process.env.PORT || 8181;
@@ -40,7 +39,6 @@ app.post('/save', function (req, res) {
 
 app.post('/submit', function (req, res) {
   console.log('doc: ', req.body);
-  swal("Hello world!");
   const result = tree.predict(req.body);
   const prettyRes = parseResults(result);
   res.send(prettyRes);
