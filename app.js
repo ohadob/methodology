@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var db = require('./db');
-var tree = require('./tree');
+var tree = require('./tree4');
 var bodyParser = require('body-parser');
 
 const app = express();
@@ -39,9 +39,10 @@ app.post('/save', function (req, res) {
 
 app.post('/submit', function (req, res) {
   console.log('doc: ', req.body);
-  const result = tree.predict(req.body);
-  const prettyRes = parseResults(result);
-  res.send(prettyRes);
+  tree.predict(req.body).then(result => {
+    const prettyRes = parseResults(result);
+    res.send(prettyRes);
+  });
 });
 
 var sendResults = function (req, res, next) {

@@ -7,7 +7,7 @@ var methodEnum = {
     Hybrid: 2000,
     Agile: 3000,
     Scrum: 4000,
-    Hybrid: 5000,
+    Rapid: 5000,
     Prototype: 6000,
     Spiral: 7000,
     'Extreme Programming': 8000,
@@ -28,16 +28,16 @@ var mapProject = (p, successPercent) => ({
         + Number(p.mesBudget)
         + Number(p.mesSchedule)) >= (successPercent * 0.2),
     projMethod: methodEnum[p.projMethod],
-    orgSize: sizeEnum[p.orgSize],
-    orgFlexibility: Number(p.orgFlexibility),
-    orgResources: Number(p.orgResources),
-    projDuration: Number(p.projDuration),
-    projEffort: Number(p.projEffort),
-    projRisk: Number(p.projRisk),
-    projQuality: Number(p.projQuality),
-    projReliability: Number(p.projReliability),
-    projExperience: Number(p.projExperience),
-    projLife : Number(p.projLife)
+    orgSize: p['Organization Size'] ? sizeEnum[p['Organization Size']] : sizeEnum[p.orgSize],
+    orgFlexibility: p.orgFlexibility ? Number(p.orgFlexibility) : 3,
+    orgResources: p.orgResources ? Number(p.orgResources) : 3,
+    projDuration: p.projDuration ? Number(p.projDuration) : 3,
+    projEffort: p.projEffort ? Number(p.projEffort) : 3,
+    projRisk: p.projRisk ? Number(p.projRisk) : 3,
+    projQuality: p.projQuality ? Number(p.projQuality) : 3,
+    projReliability: p.projReliability ? Number(p.projReliability) : 3,
+    projExperience: p.projExperience ? Number(p.projExperience) : 3,
+    projLife : p.projLife ? Number(p.projLife) : 3
 });
 
 var class_name = 'success';
@@ -45,14 +45,8 @@ var features =
     ["projMethod",
     "orgSize",
     "orgFlexibility",
-    "orgResources",
     "projDuration",
-    "projEffort",
-    "projRisk",
-    "projQuality",
-    "projReliability",
-    "projExperience",
-    "projLife"];
+    "projEffort"];
 
 var dts = [];
 var req = {};
@@ -119,7 +113,7 @@ function predict(data) {
         methods.push({projMethod , project, methodName});
     }
 
-    for (let successPercent = 100; successPercent >= 1; successPercent--) {
+    for (let successPercent = 100; successPercent >= 25; successPercent -= 5) {
         var training = projects.map(p => mapProject(p, successPercent));        
         const dt = buildTree(training, class_name, features);
         console.log('successPercent:' ,successPercent);
@@ -127,7 +121,7 @@ function predict(data) {
         for (let method of methods) {
             console.log('projMethod:', method.projMethod);
             if (dt.predict(method.project)) {
-                results.push({ method: method.methodName, successPercent });
+                results.push({ method: method.methodName, successPercent: Number(successPercent) });
                 methods = methods.filter(x => x.projMethod != method.projMethod);
             }
         }
