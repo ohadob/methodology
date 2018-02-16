@@ -79,7 +79,9 @@ function init() {
         const rows = projects.map(mapProject).map(toArray);
         
         console.log('res: ', JSON.stringify(rows));
-        gotree.buildTree(rows);
+        const treeModel = gotree.buildTree(rows);
+        console.log();
+        console.log(treeModel);
     });
 }
 
