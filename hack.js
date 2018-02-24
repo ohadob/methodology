@@ -2,24 +2,25 @@ var db = require('./db');
 
 const p = { name: 'missing',
 email: 'missing',
-'Organization Size': '<50',
-orgFlexibility: '3',
-projDuration: '8',
-projEffort: '5',
+'Organization Size': '<100',
+orgFlexibility: '1',
+projDuration: '12',
+projEffort: '4',
+orgResources: '4',
+projRisk: '1',
+projQuality: '2',
+projReliability: '3',
+projExperience:  '15',
+projLife : '1',
 projMethod: 'Rapid',
 projMethodOther: '',
-mesSchedule: '1',
-mesBudget: '1',
-mesContent: '1',
-mesCustomer: '4' };
+mesSchedule: '5',
+mesBudget: '3',
+mesContent: '5',
+mesCustomer: '5' };
 
 db.save(p);
 
-const a = ["projMethod",
-    "orgSize",
-    "orgFlexibility",
-    "projDuration",
-    "projEffort"];
 
 
 const results =  [{"method":"Extreme Programming","successPercent":90},

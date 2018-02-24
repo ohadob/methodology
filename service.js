@@ -1,16 +1,18 @@
 var db = require('./db');
+var fs = require('fs');
 
 var req = {};
 db.queryAll(req, () => {
-    
     var req2 = {};
-    db.queryAll(req2, () => {
-        var projects = req.results;
-        var projects2 = req2.results;
-        var allProjects = projects.concat(projects2);
-        for (proj of allProjects) {
-            db.save(proj, 'projects3');
-        }
-    }, 'projects2');
+    var projects = req.results;
+    for (const proj of projects) {
+        proj.orgSize = proj['Organization Size'];
+        delete proj['Organization Size'];
+        delete proj.projEffort;
 
-}, 'projects');
+        db.delete(proj);
+        db.save(proj);
+    }
+
+
+});

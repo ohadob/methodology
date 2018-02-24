@@ -5,13 +5,7 @@ var gotree = require('./gotree');
 
 var methodEnum = {
     Waterfall: 'Waterfall',
-    Hybrid: 'Hybrid',
-    Agile: 'Agile',
-    Scrum: 'Scrum',
-    Rapid: 'Rapid',
-    Prototype: 'Prototype',
-    Spiral: 'Spiral',
-    'Extreme Programming': 'EP',
+    Agile: 'Agile'
 };
 
 const methodNames = Object.keys(methodEnum);
@@ -28,16 +22,15 @@ var mapProject = p => ({
         + Number(p.mesContent)
         + Number(p.mesBudget)
         + Number(p.mesSchedule)) * 5,
-    projMethod: methodEnum[p.projMethod],
-    orgSize: sizeEnum[p['Organization Size']],
+    projMethod: p.projMethod ? methodEnum[p.projMethod] : '',
+    orgSize: p['Organization Size'] ? sizeEnum[p['Organization Size']] : 3,
     orgFlexibility: p.orgFlexibility ? Number(p.orgFlexibility) : 3,
     orgResources: p.orgResources ? Number(p.orgResources) : 3,
     projDuration: p.projDuration ? Number(p.projDuration) : 3,
-    projEffort: p.projEffort ? Number(p.projEffort) : 3,
     projRisk: p.projRisk ? Number(p.projRisk) : 3,
     projQuality: p.projQuality ? Number(p.projQuality) : 3,
     projReliability: p.projReliability ? Number(p.projReliability) : 3,
-    projExperience: p.projExperience ? Number(p.projExperience) : 3,
+    projEffort: p.projEffort ? Number(p.projEffort) : 3,
     projLife : p.projLife ? Number(p.projLife) : 3
 });
 

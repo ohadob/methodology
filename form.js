@@ -45,7 +45,7 @@ $(document).ready(function () {
 			$("<fieldset/>").append(
 				$("<legend/>", { text: "Organization" }),
 				$("<label/>", { text: 'Organization Size' }),
-				$("<select>", { name: 'Organization Size' }).append(
+				$("<select>", { name: 'orgSize' }).append(
 					$("<option/>").val('').text('Please select'),
 					$("<option/>").val('<50').text('< 50 members'),
 					$("<option/>").val('<100').text('< 100 members'),
@@ -75,9 +75,6 @@ $(document).ready(function () {
 				$("<br/>"), $("<br/>"),
 				$("<label/>", { text: 'Project Reliability/Criticality' }),
 				$("<input/>", { type: 'number', min: "1", max: "5", name: 'projReliability', placeholder: 'Level of tolerance for bugs (1 - 5)' }),
-				$("<br/>"), $("<br/>"),
-				$("<label/>", { text: 'Project Experience' }),
-				$("<input/>", { type: 'number', name: 'projExperience', placeholder: 'Total team experience (years)' }),
 				$("<br/>"), $("<br/>"),
 				$("<label/>", { text: 'Project Lifespan' }),
 				$("<input/>", { type: 'number', name: 'projLife', placeholder: 'Software life expectancy (years)' })),
