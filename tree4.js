@@ -23,7 +23,7 @@ var mapProject = p => ({
         + Number(p.mesBudget)
         + Number(p.mesSchedule)) * 5,
     projMethod: p.projMethod ? methodEnum[p.projMethod] : '',
-    orgSize: p['Organization Size'] ? sizeEnum[p['Organization Size']] : 3,
+    orgSize: p.orgSize ? sizeEnum[p.orgSize] : 3,
     orgFlexibility: p.orgFlexibility ? Number(p.orgFlexibility) : 3,
     orgResources: p.orgResources ? Number(p.orgResources) : 3,
     projDuration: p.projDuration ? Number(p.projDuration) : 3,
