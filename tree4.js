@@ -84,7 +84,50 @@ function init() {
     });
 }
 
+function validator(data) {
+    let waterfallP = 70;
+    let agileP = 75;
+
+    if (data.projEffort && Number(data.projEffort) < 10000) {
+        waterfallP = 80;
+        agileP = 70;
+    }
+    if (data.projEffort && Number(data.projEffort) < 11) {
+        waterfallP = 75;
+        agileP = 75;
+    }
+    if (data.projEffort && Number(data.projEffort) < 6) {
+        waterfallP = 65;
+        agileP = 80;
+    }
+
+
+    if (data.orgSize === '<50') {
+        waterfallP = 45;
+        agileP = 65;
+    }
+    if (data.orgSize === '<100') {
+        waterfallP = 60;
+        agileP = 75;
+    }
+    if (data.orgSize === '<1000') {
+        waterfallP = 80;
+        agileP = 80;
+    }
+    if (data.orgSize === '1000+') {
+        waterfallP = 85;
+        agileP = 75;
+    }
+
+    return [{ method: 'Waterfall', successPercent: waterfallP },
+        { method: 'Agile', successPercent: agileP }];
+}
+
 async function predict(data) {
+    if (!data.orgFlexibility && !data.orgResources && !data.projQuality) {
+        return validator(data);
+    }
+
     const projectData = mapProject(data);
     delete projectData.success;
 
