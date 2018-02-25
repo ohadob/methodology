@@ -45,7 +45,6 @@ var columns = [
     { name: 'projRisk', categorical: false },
     { name: 'projQuality', categorical: false },
     { name: 'projReliability', categorical: false },
-    { name: 'projExperience', categorical: false },
     { name: 'projLife', categorical: false }
   ];
 
@@ -57,6 +56,8 @@ function toArray(p) {
     }
     if (p['success']) {
         row.push(p['success'].toString());
+    } else {
+        row.push('75');
     }
 
     return row;
@@ -72,6 +73,11 @@ function init() {
         const rows = projects.map(mapProject).map(toArray);
         
         console.log('res: ', JSON.stringify(rows));
+
+
+        const l = rows[0].length;
+        console.log('a  ', JSON.stringify(rows.filter(r => r.length != l)));
+
         const treeModel = gotree.buildTree(rows);
         console.log();
         console.log(treeModel);
