@@ -48,7 +48,7 @@ var columns = [
     { name: 'projLife', categorical: false }
   ];
 
-function toArray(p) {
+function toArray(p, addSuccess = false) {
     const row = [];
     for (let i = 0; i < columns.length; i++) {
         const column = columns[i];
@@ -56,6 +56,8 @@ function toArray(p) {
     }
     if (p['success']) {
         row.push(p['success'].toString());
+    } else if (addSuccess) {
+        p['success'] = 75;
     }
 
     return row;
@@ -68,7 +70,7 @@ function init() {
     console.log('initiating tree module...');
     db.queryAll(req, () => {
         projects = req.results;
-        const rows = projects.map(mapProject).map(toArray);
+        const rows = projects.map(mapProject).map(toArray, true);
         
         console.log('res: ', JSON.stringify(rows));
 
