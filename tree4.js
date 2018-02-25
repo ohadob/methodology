@@ -26,11 +26,11 @@ var mapProject = p => ({
     orgSize: p.orgSize ? sizeEnum[p.orgSize] : 3,
     orgFlexibility: p.orgFlexibility ? Number(p.orgFlexibility) : 3,
     orgResources: p.orgResources ? Number(p.orgResources) : 3,
-    projDuration: p.projDuration ? Number(p.projDuration) : 3,
+    projDuration: p.projDuration ? Number(p.projDuration) : 9,
     projRisk: p.projRisk ? Number(p.projRisk) : 3,
     projQuality: p.projQuality ? Number(p.projQuality) : 3,
     projReliability: p.projReliability ? Number(p.projReliability) : 3,
-    projEffort: p.projEffort ? Number(p.projEffort) : 3,
+    projEffort: p.projEffort ? Number(p.projEffort) : 6,
     projLife : p.projLife ? Number(p.projLife) : 3
 });
 
