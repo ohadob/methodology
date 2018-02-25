@@ -56,8 +56,6 @@ function toArray(p) {
     }
     if (p['success']) {
         row.push(p['success'].toString());
-    } else {
-        row.push('75');
     }
 
     return row;
