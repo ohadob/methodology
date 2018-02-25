@@ -122,7 +122,7 @@ function validator(data) {
     const res = [{ method: 'Waterfall', successPercent: waterfallP },
         { method: 'Agile', successPercent: agileP }];
 
-    return results.sort((a,b) => b.successPercent - a.successPercent);
+    return res.sort((a,b) => b.successPercent - a.successPercent);
 }
 
 async function predict(data) {
