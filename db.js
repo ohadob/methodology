@@ -1,4 +1,4 @@
-var collection = 'projects2';
+var collection = 'projects';
 var url = 'mongodb://ohadob:ohadob@ds155132.mlab.com:55132/ohadob';
 
 var mongoClient = require('mongodb').MongoClient;
